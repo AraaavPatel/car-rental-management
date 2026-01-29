@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluxDrive - Luxury Car Rental</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" data-aos="fade-down">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>FluxDrive</h2>
+                <span class="logo-accent">Elite</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#fleet" class="nav-link">Fleet</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#membership" class="nav-link">Membership</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <!-- LOCAL HERO IMAGE -->
+            <img src="{{ url_for('static', filename='ferrari-f8-tributo.png') }}" alt="Luxury Car" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-stats" data-aos="fade-up">
+                <div class="stat">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Premium Vehicles</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Cities Worldwide</div>
+                </div>
+            </div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+                Experience the pinnacle of automotive excellence with FluxDrive's curated collection of premium vehicles
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+                Where luxury meets performance. Rent the world's most exclusive cars with white-glove service and unmatched attention to detail.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <button class="btn btn--primary btn--lg" onclick="scrollToSection('fleet')">
+                    <i class="fas fa-car"></i>
+                    Browse Fleet
+                </button>
+                <button class="btn btn--outline btn--lg" onclick="openBookingModal()">
+                    <i class="fas fa-calendar-alt"></i>
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Gallery -->
+    <section id="fleet" class="fleet">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Exclusive Fleet</h2>
+                <p>Handpicked luxury and exotic vehicles for the most discerning clientele</p>
+            </div>
+            
+            <div class="fleet-filters" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">All Vehicles</button>
+                <button class="filter-btn" data-filter="hypercar">Hypercars</button>
+                <button class="filter-btn" data-filter="supercar">Supercars</button>
+                <button class="filter-btn" data-filter="luxury">Luxury</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="electric">Electric</button>
+            </div>
+
+            <div class="fleet-grid" id="fleet-grid">
+                <!-- Cars will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How FluxDrive Works</h2>
+                <p>Three simple steps to your ultimate driving experience</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>1. Browse</h3>
+                    <p>Explore our curated collection of luxury and exotic vehicles. Use filters to find your perfect match.</p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>2. Customize</h3>
+                    <p>Select your dates, location, and any additional services like chauffeur or delivery options.</p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="600">
+                    <div class="step-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>3. Delivered</h3>
+                    <p>Your chosen vehicle arrives pristine and ready, with full concierge support throughout your rental.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>What Our Clients Say</h2>
+                <p>Experiences that exceed expectations</p>
+            </div>
+            
+            <div class="testimonials-carousel" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-track" id="testimonial-track">
+                    <!-- Testimonials will be populated by JavaScript -->
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-btn prev" id="prev-testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-btn next" id="next-testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership -->
+    <section id="membership" class="membership">
+        <div class="container">
+            <div class="membership-content" data-aos="fade-up">
+                <div class="membership-info">
+                    <h2>FluxDrive Elite Membership</h2>
+                    <p>Join our exclusive community and unlock premium benefits</p>
+                    <ul class="membership-benefits">
+                        <li><i class="fas fa-check"></i> Priority vehicle access and reservations</li>
+                        <li><i class="fas fa-check"></i> Exclusive member-only vehicles</li>
+                        <li><i class="fas fa-check"></i> Complimentary concierge services</li>
+                        <li><i class="fas fa-check"></i> Special event invitations</li>
+                        <li><i class="fas fa-check"></i> Preferred pricing and upgrades</li>
+                        <li><i class="fas fa-check"></i> 24/7 VIP support hotline</li>
+                    </ul>
+                    <div class="membership-price">
+                        <span class="price">$2,500</span>
+                        <span class="period">/year</span>
+                    </div>
+                    <button class="btn btn--primary btn--lg" onclick="openMembershipModal()">
+                        <i class="fas fa-crown"></i>
+                        Join Elite
+                    </button>
+                </div>
+                <div class="membership-visual" data-aos="fade-left" data-aos-delay="200">
+                    <!-- LOCAL MEMBERSHIP IMAGE -->
+                    <img src="{{ url_for('static', filename='aston-martin-db11.png') }}" alt="Luxury Car Showroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Get in Touch</h2>
+                <p>Ready to experience luxury? Contact us today</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+1 (555) 123-FLUX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>elite@fluxdrive.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Manhattan, New York</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" data-aos="fade-left" data-aos-delay="200">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>FluxDrive</h3>
+                        <span class="logo-accent">Elite</span>
+                    </div>
+                    <p>Experience luxury redefined. Premium car rentals for the discerning few.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Luxury Car Rental</a></li>
+                        <li><a href="#">Chauffeur Service</a></li>
+                        <li><a href="#">Corporate Rentals</a></li>
+                        <li><a href="#">Event Transportation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest offerings</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 FluxDrive Elite. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Car Detail Modal -->
+    <div class="modal hidden" id="car-modal">
+        <div class="modal-overlay" onclick="closeCarModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCarModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modal-body">
+                <!-- Car details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal hidden" id="booking-modal">
+        <div class="modal-overlay" onclick="closeBookingModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Book Your Experience</h3>
+            </div>
+            <form class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Pick-up Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Return Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <select class="form-control" required>
+                        <option value="">Select Location</option>
+                        <option value="manhattan">Manhattan, NY</option>
+                        <option value="beverly-hills">Beverly Hills, CA</option>
+                        <option value="miami">Miami, FL</option>
+                        <option value="las-vegas">Las Vegas, NV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Additional Services</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="chauffeur">
+                            <span class="checkmark"></span>
+                            Professional Chauffeur (+$300/day)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="delivery">
+                            <span class="checkmark"></span>
+                            White-glove Delivery (+$150)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="insurance">
+                            <span class="checkmark"></span>
+                            Premium Insurance (+$100/day)
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">
+                    <i class="fas fa-calendar-check"></i>
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Membership Modal -->
+    <div class="modal hidden" id="membership-modal">
+        <div class="modal-overlay" onclick="closeMembershipModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeMembershipModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Join FluxDrive Elite</h3>
+                <p>Unlock exclusive benefits and priority access</p>
+            </div>
+            <form class="membership-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Preferred Location</label>
+                    <select class="form-control" required>
+                        <option value="">Select Location</option>
+                        <option value="manhattan">Manhattan, NY</option>
+                        <option value="beverly-hills">Beverly Hills, CA</option>
+                        <option value="miami">Miami, FL</option>
+                        <option value="las-vegas">Las Vegas, NV</option>
+                    </select>
+                </div>
+                <div class="membership-summary">
+                    <div class="summary-item">
+                        <span>Annual Membership</span>
+                        <span>$2,500</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>$2,500</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">
+                    <i class="fas fa-crown"></i>
+                    Join Elite Membership
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FluxDrive Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1 style="text-align:center;">🚗 FluxDrive Admin Dashboard</h1>
+  <div class="container">
+    <h2>Bookings</h2>
+    <table border="1" width="100%" id="booking-table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
+          <th>Car</th><th>Location</th><th>Dates</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    async function loadBookings() {
+      const res = await fetch("/api/bookings");
+      const bookings = await res.json();
+      const tbody = document.querySelector("#booking-table tbody");
+      tbody.innerHTML = "";
+      bookings.forEach(b => {
+        tbody.innerHTML += `<tr>
+          <td>${b.id}</td>
+          <td>${b.name}</td>
+          <td>${b.email}</td>
+          <td>${b.phone}</td>
+          <td>${b.car}</td>
+          <td>${b.location}</td>
+          <td>${b.start} → ${b.end}</td>
+        </tr>`;
+      });
+    }
+    loadBookings();
+  </script>
+</body>
+</html>
